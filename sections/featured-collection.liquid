@@ -71,7 +71,7 @@
     data-id="{{ section.id }}">
     <div class="collection__title collection__title-feature title-wrapper title-wrapper--no-top-margin page-width{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% endif %}{% if show_desktop_slider %} collection__title--desktop-slider{% endif %}">
       {%- if section.settings.title != blank -%}
-        <h2 class="title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+        <h2 class="title title-feature inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
           {{ section.settings.title }}
         </h2>
       {%- endif -%}
@@ -215,7 +215,14 @@
     text-align: center;
     color: #313131;
     margin-bottom: 30px;
+    font-size: 46px !important;
     font-weight: 600 !important;
+    font-family: 'Barlow'
+    , sans-serif;
+  }
+  .title-feature {
+    font-size: 46px;
+    font-weight: 600;
     font-family: 'Barlow'
     , sans-serif;
   }
@@ -224,19 +231,41 @@
     font-weight: lighter !important;
     margin-top: -10px;
     margin-bottom: 8px;
-    color: #555555;
+    color: #313131;
     padding: 0;
     font-family: 'Barlow'
     , sans-serif;
   }
   .subtitle-mini {
-    font-size: 1rem;
+    font-size: 16px;
     margin-top: 0;
     margin-bottom: 16px;
-    color: #777777;
+    color: #313131;
     font-family: 'Barlow'
     , sans-serif;
+    opacity: 0.7;
+    font-weight: normal;
   }
+
+  @media screen and (max-width: 749px) {
+    .collection__title-feature,
+    .title-feature {
+      font-size: 30px !important;
+      margin-bottom: 20px;
+    }
+
+    .subtitle {
+      font-size: 20px;
+      margin-top: -5px;
+    }
+
+    .subtitle-mini {
+      font-size: 14px !important;
+      margin-bottom: 12px !important;
+      opacity: 0.7 !important;
+    }
+  }
+
 </style>
 
 {% schema %}
@@ -257,9 +286,9 @@
         "type": "range",
         "id": "products_to_show",
         "min": 2,
-        "max": 25,
+        "max": 75,
         "step": 1,
-        "default": 4,
+        "default": 74,
         "label": "t:sections.featured-collection.settings.products_to_show.label"
       },
       {

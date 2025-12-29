@@ -94,23 +94,6 @@
     gap: 8px;
   }
 
-  @media screen and (max-width: 749px) {
-    .gradient-hero-{{ section.id }} .gradient-hero__card {
-      flex-direction: column;
-      gap: 30px;
-    }
-
-    .gradient-hero-{{ section.id }}
-    .gradient-hero__image-column
-    , .gradient-hero-{{ section.id }}
-    .gradient-hero__content {
-      flex: 1 1 100%;
-    }
-
-    .gradient-hero-{{ section.id }}.gradient-hero__image-column:last-child {
-      order: -1;
-    }
-  }
 
   .gradient-hero-{{ section.id }}
   .gradient-hero__heading {
@@ -176,12 +159,52 @@
     transform: translateY(-3px);
     box-shadow: 0 4px 15px rgba(51, 209, 119, 0.4);
   }
+
+  @media screen and (max-width: 749px) {
+    .gradient-hero-{{ section.id }} .gradient-hero__card {
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    /* Hide first image column on mobile */
+    .gradient-hero__image-column-one {
+      display: none !important;
+    }
+
+    /* Content and second image take full width */
+    .gradient-hero-{{ section.id }} .gradient-hero__image-column
+    , .gradient-hero-{{ section.id }}
+    .gradient-hero__content {
+      flex: 1 1 100%;
+    }
+
+    .gradient-hero-{{ section.id }}.gradient-hero__image-column:last-child {
+      order: -1;
+    }
+
+    /* Fix image positioning on mobile */
+    .gradient-hero-{{ section.id }} .gradient-hero__image-column {
+      min-height: 200px;
+      flex-direction: column;
+      gap: 20px;
+
+    }
+
+    .gradient-hero-{{ section.id }}
+    .gradient-hero__image {
+      position: absolute;
+      max-width: 80%;
+    }
+
+  }
+
+
 {%- endstyle -%}
 
 <section class="gradient-hero gradient-hero-{{ section.id }}">
   <div class="page-width">
     <div class="gradient-hero__card gradient-hero__card--{{ section.settings.image_height }}">
-      <div class="gradient-hero__image-column">
+      <div class="gradient-hero__image-column gradient-hero__image-column-one">
         <img
           src="{{ '8.1.png' | asset_url }}"
           alt="Decorative image"
