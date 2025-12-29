@@ -147,10 +147,10 @@
       "settings": {
         "gradient_start": "#a0e052",
         "gradient_end": "#33d177",
-        "heading": "Add a bold headline",
-        "subtitle": "<p>Add supporting copy to explain your offer.</p>",
-        "mini_subtitle": "Optional eyebrow copy",
-        "button_label": "Shop now",
+        "heading": "Live Preview Module",
+        "subtitle": "<p>Show customers the final look.</p>",
+        "mini_subtitle": "(additional fee applies $7.99 USD)",
+        "button_label": "See Demo",
         "button_link": "",
         "padding_top": 40,
         "padding_bottom": 40
