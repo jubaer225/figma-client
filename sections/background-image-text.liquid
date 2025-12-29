@@ -1,11 +1,3 @@
-{%- liquid
-  assign fetch_priority = 'auto'
-  if section.index == 1
-    assign fetch_priority = 'high'
-  endif
-  assign widths = '375, 550, 750, 1100, 1500, 2000, 3000, 3840'
--%}
-
 {%- style -%}
   .gradient-hero-{{ section.id }} {
     background: linear-gradient(to right, {{ section.settings.gradient_start }}, {{ section.settings.gradient_end }});
@@ -19,6 +11,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 20px;
+    color: white;
   }
 
   .gradient-hero-{{ section.id }}
@@ -38,7 +31,7 @@
 
   .gradient-hero-{{ section.id }}
   .gradient-hero__image-column {
-    flex: 0 0 30%;
+    flex: 0 0 20%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -54,7 +47,7 @@
 
   .gradient-hero-{{ section.id }}
   .gradient-hero__content {
-    flex: 0 0 40%;
+    flex: 0 0 60%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -91,20 +84,28 @@
   .gradient-hero-{{ section.id }}
   .gradient-hero__heading {
     margin: 0;
+    color: white;
+    font-weight: 600;
+    font-size: 32px;
+    font-family: 'inter'
+    , sans-serif;
   }
 
   .gradient-hero-{{ section.id }}
   .gradient-hero__subtitle {
     margin: 0;
+    font-size: 38px;
+    font-family: 'barlow'
+    , sans-serif;
+    font-weight: 300;
+    letter-specing: 0;
   }
 
   .gradient-hero-{{ section.id }}
   .gradient-hero__mini {
     margin: 0;
-    letter-spacing: 0.04em;
     text-transform: uppercase;
-    font-size: 0.9em;
-    opacity: 0.9;
+    font-size: 18px;
   }
 
   .gradient-hero-{{ section.id }}
@@ -112,6 +113,37 @@
     display: flex;
     justify-content: center;
     gap: 12px;
+  }
+
+  .button-feature {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 15px 23px;
+    background: #fff;
+    text-decoration: none;
+    color: #33D177;
+    font-family: 'Barlow'
+    , sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 40px;
+    border-bottom-left-radius: 8px;
+    line-height: 18px;
+    letter-spacing: 0;
+    vertical-align: middle;
+    border: none;
+    outline: none;
+    margin-top: 12px
+  }
+
+  .button-feature:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(51, 209, 119, 0.4);
   }
 {%- endstyle -%}
 
@@ -139,20 +171,19 @@
           {%- endif -%}
 
           {%- if section.settings.mini_subtitle != blank -%}
-            <p class="gradient-hero__mini">{{ section.settings.mini_subtitle }}</p>
+            <p class="gradient-hero__subtitle gradient-hero__mini">{{ section.settings.mini_subtitle }}</p>
           {%- endif -%}
 
           {%- if section.settings.button_label != blank -%}
             <div class="gradient-hero__button-wrapper">
-              <a
-                {%- if section.settings.button_link == blank -%}
-                role="link"
-                aria-disabled="true"
-                {%- else -%}
-                href="{{ section.settings.button_link }}"
-                {%- endif -%}
-                class="button{% if section.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}">
-                {{- section.settings.button_label | escape -}}
+              <a href="{{ section.settings.button_link }}" class="button-feature">
+
+                {{ section.settings.button_label | escape }}
+                <img
+                  src="{{ 'arrow.png' |  asset_url }}"
+                  alt="arrow icon"
+                  width="16"
+                  height="16" />
               </a>
             </div>
           {%- endif -%}
@@ -191,16 +222,7 @@
         "default": "#A0E052"
       },
       {
-        "type": "range",
-        "id": "gradient_angle",
-        "min": 0,
-        "max": 360,
-        "step": 5,
-        "unit": "deg",
-        "label": "Gradient angle",
-        "default": 135
-      },
-      {
+
         "type": "select",
         "id": "image_height",
         "options": [
@@ -217,7 +239,8 @@
         ],
         "default": "medium",
         "label": "Height"
-      }, {
+      },
+      {
         "type": "inline_richtext",
         "id": "heading",
         "label": "Heading",
@@ -241,16 +264,6 @@
         "type": "url",
         "id": "button_link",
         "label": "Button link"
-      }, {
-        "type": "checkbox",
-        "id": "button_style_secondary",
-        "default": false,
-        "label": "Use secondary button style"
-      }, {
-        "type": "color_scheme",
-        "id": "color_scheme",
-        "label": "Content color scheme",
-        "default": "scheme-1"
       }, {
         "type": "range",
         "id": "padding_top",
