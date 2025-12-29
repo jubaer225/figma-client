@@ -8,7 +8,7 @@
 
 {%- style -%}
   .gradient-hero-{{ section.id }} {
-    background: linear-gradient({{ section.settings.gradient_angle }}deg, {{ section.settings.gradient_start }}, {{ section.settings.gradient_end }});
+    background: linear-gradient(to bottom, {{ section.settings.gradient_start }}, {{ section.settings.gradient_end }});
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
   }
@@ -116,12 +116,12 @@
           {{ section.settings.background_image
  | image_url: width: 3840
  | image_tag:
-	width: section.settings.background_image.width,
-	height: section.settings.background_image.height,
-	sizes: '(min-width: 1200px) 1200px, 100vw',
-	widths: widths,
-	class: 'gradient-hero__image',
-	fetchpriority: fetch_priority
+ 	width: section.settings.background_image.width,
+ 	height: section.settings.background_image.height,
+ 	sizes: '(min-width: 1200px) 1200px, 100vw',
+ 	widths: widths,
+ 	class: 'gradient-hero__image',
+ 	fetchpriority: fetch_priority
           }}
         {%- else -%}
           {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg gradient-hero__placeholder' }}
@@ -182,20 +182,11 @@
         "default": "#A0E052"
       },
       {
-        "type": "range",
-        "id": "gradient_angle",
-        "min": 0,
-        "max": 360,
-        "step": 5,
-        "unit": "deg",
-        "label": "Gradient angle",
-        "default": 135
-      },
-      {
         "type": "image_picker",
         "id": "background_image",
         "label": "Background image"
-      }, {
+      },
+      {
         "type": "range",
         "id": "image_overlay_opacity",
         "min": 0,
