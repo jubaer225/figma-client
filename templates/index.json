@@ -129,17 +129,29 @@
       "type": "background-image-text",
       "name": "Gradient banner",
       "settings": {
-        "gradient_start": "#A0E052",
+        "gradient_start": "#a0e052",
         "gradient_end": "#33d177",
         "gradient_angle": 135,
-        "image_height": "small",
         "heading": "Magnet Builder Module",
         "subtitle": "<p>Start selling Magnets with ease!</p>",
         "mini_subtitle": "(additional fee applies $39.99 USD)",
         "button_label": "See Demo",
         "button_link": "",
-        "button_style_secondary": false,
-        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "background_two_image_4Xznw4": {
+      "type": "background-two-image",
+      "name": "Gradient Two Image",
+      "settings": {
+        "gradient_start": "#a0e052",
+        "gradient_end": "#33d177",
+        "heading": "Add a bold headline",
+        "subtitle": "<p>Add supporting copy to explain your offer.</p>",
+        "mini_subtitle": "Optional eyebrow copy",
+        "button_label": "Shop now",
+        "button_link": "",
         "padding_top": 40,
         "padding_bottom": 40
       }
@@ -149,6 +161,7 @@
     "image_banner",
     "featured_collection",
     "image_with_text_drEUWg",
-    "background_image_text_3yYiwE"
+    "background_image_text_3yYiwE",
+    "background_two_image_4Xznw4"
   ]
 }
