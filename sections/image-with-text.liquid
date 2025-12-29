@@ -72,7 +72,7 @@
                   <div class="image-with-text__text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
                     {{ block.settings.text }}
                   </div>
-                  <div class="image-with-text__text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
+                  <div class="image-with-text__text image-with-text__text_2 rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
                     {{ block.settings.text_2 }}
                   </div>
                 {%- when 'button' -%}
@@ -116,6 +116,13 @@
     font-family: 'SF Pro Text'
     , sans-serif;
     font-size: 18px;
+  }
+  .image-with-text__text_2 {
+    font-family: 'Barlow'
+    , sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    width: 80%;
   }
   .background-gradient {
     color: #fff;
