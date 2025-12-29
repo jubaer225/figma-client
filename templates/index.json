@@ -125,52 +125,25 @@
         "padding_bottom": 36
       }
     },
-    "image_banner_h6hmtR": {
-      "type": "image-banner",
-      "blocks": {
-        "heading_Cf8BVC": {
-          "type": "heading",
-          "settings": {
-            "heading": "Image banner",
-            "heading_size": "h1"
-          }
-        },
-        "text_4CUxtt": {
-          "type": "text",
-          "settings": {
-            "text": "Give customers details about the banner image(s) or content on the template.",
-            "text_style": "body"
-          }
-        },
-        "buttons_HN4RPc": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Button label",
-            "button_link_1": "",
-            "button_style_secondary_1": false,
-            "button_label_2": "Button label",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "heading_Cf8BVC",
-        "text_4CUxtt",
-        "buttons_HN4RPc"
-      ],
-      "name": "t:sections.image-banner.presets.name",
+    "background_image_text_3yYiwE": {
+      "type": "background-image-text",
+      "name": "Gradient banner",
       "settings": {
-        "image_overlay_opacity": 0,
+        "gradient_start": "#A0E052",
+        "gradient_end": "#33d177",
+        "gradient_angle": 135,
+        "background_image": "shopify://shop_images/7eee47326e673d8ce92d3f2e30771ba6915006e8.png",
+        "image_overlay_opacity": 30,
         "image_height": "medium",
-        "image_behavior": "none",
-        "desktop_content_position": "middle-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": true,
+        "heading": "Add a bold headline",
+        "subtitle": "<p>Add supporting copy to explain your offer.</p>",
+        "mini_subtitle": "Optional eyebrow copy",
+        "button_label": "Shop now",
+        "button_link": "",
+        "button_style_secondary": false,
         "color_scheme": "",
-        "stack_images_on_mobile": true,
-        "mobile_content_alignment": "center",
-        "show_text_below": true
+        "padding_top": 40,
+        "padding_bottom": 40
       }
     }
   },
@@ -178,6 +151,6 @@
     "image_banner",
     "featured_collection",
     "image_with_text_drEUWg",
-    "image_banner_h6hmtR"
+    "background_image_text_3yYiwE"
   ]
 }
