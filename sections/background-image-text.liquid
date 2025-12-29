@@ -8,7 +8,7 @@
 
 {%- style -%}
   .gradient-hero-{{ section.id }} {
-    background: linear-gradient(to bottom, {{ section.settings.gradient_start }}, {{ section.settings.gradient_end }});
+    background: linear-gradient(to right, {{ section.settings.gradient_start }}, {{ section.settings.gradient_end }});
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
   }
@@ -182,11 +182,20 @@
         "default": "#A0E052"
       },
       {
+        "type": "range",
+        "id": "gradient_angle",
+        "min": 0,
+        "max": 360,
+        "step": 5,
+        "unit": "deg",
+        "label": "Gradient angle",
+        "default": 135
+      },
+      {
         "type": "image_picker",
         "id": "background_image",
         "label": "Background image"
-      },
-      {
+      }, {
         "type": "range",
         "id": "image_overlay_opacity",
         "min": 0,
