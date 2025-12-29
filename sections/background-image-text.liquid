@@ -1,3 +1,11 @@
+{%- liquid
+  assign fetch_priority = 'auto'
+  if section.index == 1
+    assign fetch_priority = 'high'
+  endif
+  assign widths = '375, 550, 750, 1100, 1500, 2000, 3000, 3840'
+-%}
+
 {%- style -%}
   .gradient-hero-{{ section.id }} {
     background: linear-gradient(to right, {{ section.settings.gradient_start }}, {{ section.settings.gradient_end }});
@@ -222,23 +230,14 @@
         "default": "#A0E052"
       },
       {
-
-        "type": "select",
-        "id": "image_height",
-        "options": [
-          {
-            "value": "small",
-            "label": "Small"
-          }, {
-            "value": "medium",
-            "label": "Medium"
-          }, {
-            "value": "large",
-            "label": "Large"
-          }
-        ],
-        "default": "medium",
-        "label": "Height"
+        "type": "range",
+        "id": "gradient_angle",
+        "min": 0,
+        "max": 360,
+        "step": 5,
+        "unit": "deg",
+        "label": "Gradient angle",
+        "default": 135
       },
       {
         "type": "inline_richtext",
