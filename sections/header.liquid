@@ -247,9 +247,9 @@
           </localization-form>
         {%- endif -%}
       </div>
-      {% render 'header-search', input_id: 'Search-In-Modal' %}
+      {% comment %} {% render 'header-search', input_id: 'Search-In-Modal' %} {% endcomment %}
 
-      {%- if shop.customer_accounts_enabled -%}
+      {% comment %} {%- if shop.customer_accounts_enabled -%}
         <a
           href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
           class="header__icon header__icon--account link focus-inset{% if section.settings.menu != blank %} small-hide{% endif %}"
@@ -276,7 +276,7 @@
             -%}
           </span>
         </a>
-      {%- endif -%}
+      {%- endif -%} {% endcomment %}
 
       {%- for block in section.blocks -%}
         {%- case block.type -%}
@@ -285,7 +285,9 @@
         {%- endcase -%}
       {%- endfor -%}
 
-      <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
+      <a href="" class="ticket-btn">Support Ticket</a>
+
+      {% comment %} <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
         {% if cart == empty %}
           <span class="svg-wrapper">{{ 'icon-cart-empty.svg' | inline_asset_content }}</span>
         {% else %}
@@ -300,10 +302,66 @@
             <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
           </div>
         {%- endif -%}
-      </a>
+      </a> {% endcomment %}
     </div>
   </header>
 </{{ header_tag }}>
+
+<style>
+  .header-wrapper {
+    background-color: transparent !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    border-bottom: none;
+  }
+
+  .header-wrapper.scrolled {
+    background: linear-gradient(to bottom, #A0E052 0%, #01CB6B 100%) !important;
+    background-attachment: scroll;
+    transition: background 0.3s ease;
+  }
+
+   .ticket-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 10px 18px;
+      background: #fff;
+      text-decoration: none;
+      color: #33D177;
+      font-family: 'Barlow', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      border-top-left-radius: 40px;
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 40px;
+      border-bottom-left-radius: 8px;
+      line-height:18px;
+      letter-spacing:0;
+      vertical-align:middle;
+    }
+
+    .ticket-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 15px rgba(51, 209, 119, 0.4);
+    }
+</style>
+
+<script>
+  window.addEventListener('scroll', function() {
+    const header = document.querySelector('.header-wrapper');
+    if (window.scrollY > 50) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  });
+</script>
 
 {%- if settings.cart_type == 'notification' -%}
   {%- render 'cart-notification',
