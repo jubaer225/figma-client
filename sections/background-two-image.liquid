@@ -1,0 +1,305 @@
+{%- style -%}
+  .gradient-hero-{{ section.id }} {
+    background: linear-gradient(to right, {{ section.settings.gradient_start }}, {{ section.settings.gradient_end }});
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  .gradient-hero-{{ section.id }}
+  .gradient-hero__card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    color: white;
+  }
+
+  .gradient-hero-{{ section.id }}
+  .gradient-hero__card--small {
+    min-height: 200px;
+  }
+
+  .gradient-hero-{{ section.id }}
+  .gradient-hero__card--medium {
+    min-height: 250px;
+  }
+
+  .gradient-hero-{{ section.id }}
+  .gradient-hero__card--large {
+    min-height: 320px;
+  }
+
+  .gradient-hero-{{ section.id }}
+  .gradient-hero__image-column {
+    flex: 0 0 20%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    min-height: 250px;
+  }
+
+  .gradient-hero-{{ section.id }}
+  .gradient-hero__image {
+    position: absolute;
+    width: auto;
+    max-width: 50%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .gradient-hero-{{ section.id }}
+  .gradient-hero__image--top-left {
+    top: 0;
+    left: 0;
+  }
+
+  .gradient-hero-{{ section.id }}
+  .gradient-hero__image--top-right {
+    top: 0;
+    right: 0;
+  }
+
+  .gradient-hero-{{ section.id }}
+  .gradient-hero__content {
+    flex: 0 0 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px 15px;
+  }
+
+  .gradient-hero-{{ section.id }}
+  .gradient-hero__box {
+    width: 100%;
+    display: grid;
+    gap: 8px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .gradient-hero-{{ section.id }} .gradient-hero__card {
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .gradient-hero-{{ section.id }}
+    .gradient-hero__image-column
+    , .gradient-hero-{{ section.id }}
+    .gradient-hero__content {
+      flex: 1 1 100%;
+    }
+
+    .gradient-hero-{{ section.id }}.gradient-hero__image-column:last-child {
+      order: -1;
+    }
+  }
+
+  .gradient-hero-{{ section.id }}
+  .gradient-hero__heading {
+    margin: 0;
+    color: white;
+    font-weight: 600;
+    font-size: 32px;
+    font-family: 'inter'
+    , sans-serif;
+  }
+
+  .gradient-hero-{{ section.id }}
+  .gradient-hero__subtitle {
+    margin: 0;
+    font-size: 38px;
+    font-family: 'barlow'
+    , sans-serif;
+    font-weight: 300;
+    letter-specing: 0;
+  }
+
+  .gradient-hero-{{ section.id }}
+  .gradient-hero__mini {
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 18px;
+  }
+
+  .gradient-hero-{{ section.id }}
+  .gradient-hero__button-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .button-feature {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 15px 23px;
+    background: #fff;
+    text-decoration: none;
+    color: #33D177;
+    font-family: 'Barlow'
+    , sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 40px;
+    border-bottom-left-radius: 8px;
+    line-height: 18px;
+    letter-spacing: 0;
+    vertical-align: middle;
+    border: none;
+    outline: none;
+    margin-top: 12px
+  }
+
+  .button-feature:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(51, 209, 119, 0.4);
+  }
+{%- endstyle -%}
+
+<section class="gradient-hero gradient-hero-{{ section.id }}">
+  <div class="page-width">
+    <div class="gradient-hero__card gradient-hero__card--{{ section.settings.image_height }}">
+      <div class="gradient-hero__image-column">
+        <img
+          src="{{ '8.1.png' | asset_url }}"
+          alt="Decorative image"
+          class="gradient-hero__image gradient-hero__image--top-left"
+          loading="lazy"
+          width="100"
+          height="100" />
+        <img
+          src="{{ '8.2.png' | asset_url }}"
+          alt="Decorative image"
+          class="gradient-hero__image gradient-hero__image--top-right"
+          loading="lazy"
+          width="100"
+          height="100" />
+      </div>
+
+      <div class="gradient-hero__content">
+        <div class="gradient-hero__box">
+          {%- if section.settings.heading != blank -%}
+            <h2 class="gradient-hero__heading inline-richtext">{{ section.settings.heading }}</h2>
+          {%- endif -%}
+
+          {%- if section.settings.subtitle != blank -%}
+            <div class="gradient-hero__subtitle rte">{{ section.settings.subtitle }}</div>
+          {%- endif -%}
+
+          {%- if section.settings.mini_subtitle != blank -%}
+            <p class="gradient-hero__subtitle gradient-hero__mini">{{ section.settings.mini_subtitle }}</p>
+          {%- endif -%}
+
+          {%- if section.settings.button_label != blank -%}
+            <div class="gradient-hero__button-wrapper">
+              <a href="{{ section.settings.button_link }}" class="button-feature">
+
+                {{ section.settings.button_label | escape }}
+                <img
+                  src="{{ 'arrow.png' |  asset_url }}"
+                  alt="arrow icon"
+                  width="16"
+                  height="16" />
+              </a>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <div class="gradient-hero__image-column">
+        <img
+          src="{{ '9.1.png' | asset_url }}"
+          alt="Decorative image"
+          class="gradient-hero__image gradient-hero__image--top-left"
+          loading="lazy"
+          width="100"
+          height="100" />
+        <img
+          src="{{ '9.2.png' | asset_url }}"
+          alt="Decorative image"
+          class="gradient-hero__image gradient-hero__image--top-right"
+          loading="lazy"
+          width="100"
+          height="100" />
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Gradient Two Image",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+      {
+        "type": "color",
+        "id": "gradient_start",
+        "label": "Gradient start",
+        "default": "#01CB6B"
+      },
+      {
+        "type": "color",
+        "id": "gradient_end",
+        "label": "Gradient end",
+        "default": "#A0E052"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Add a bold headline"
+      },
+      {
+        "type": "richtext",
+        "id": "subtitle",
+        "label": "Subtitle",
+        "default": "<p>Add supporting copy to explain your offer.</p>"
+      }, {
+        "type": "text",
+        "id": "mini_subtitle",
+        "label": "Mini subtitle",
+        "default": "Optional eyebrow copy"
+      }, {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label",
+        "default": "Shop now"
+      }, {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+      }, {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 120,
+        "step": 4,
+        "unit": "px",
+        "label": "Padding top",
+        "default": 40
+      }, {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 120,
+        "step": 4,
+        "unit": "px",
+        "label": "Padding bottom",
+        "default": 40
+      }
+    ],
+    "presets": [
+      {
+        "name": "Gradient Two Image"
+      }
+    ]
+  }
+{% endschema %}
