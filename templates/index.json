@@ -111,7 +111,7 @@
       "name": "t:sections.image-with-text.presets.name",
       "settings": {
         "image": "shopify://shop_images/95867da89792ee9f6b1c092653776fd82a69cbe8.png",
-        "height": "adapt",
+        "height": "large",
         "desktop_image_width": "medium",
         "layout": "text_first",
         "image_behavior": "none",
