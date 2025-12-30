@@ -1,0 +1,242 @@
+{%- style -%}
+  .subscription-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.background_color }};
+  }
+
+  .subscription-section-{{ section.id }}
+  .subscription-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .subscription-section-{{ section.id }}
+  .subscription-card {
+    background: white;
+    border-radius: 12px;
+    padding: 32px 24px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease
+    , box-shadow 0.3s ease;
+  }
+
+  .subscription-section-{{ section.id }}.subscription-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  .subscription-section-{{ section.id }}
+  .subscription-card__title {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0 0 16px;
+    color: #333;
+  }
+
+  .subscription-section-{{ section.id }}
+  .subscription-card__price {
+    font-size: 48px;
+    font-weight: 700;
+    margin: 0 0 8px;
+    color: #33D177;
+  }
+
+  .subscription-section-{{ section.id }}
+  .subscription-card__period {
+    font-size: 16px;
+    color: #666;
+    margin: 0 0 24px;
+  }
+
+  .subscription-section-{{ section.id }}
+  .subscription-card__description {
+    font-size: 14px;
+    color: #666;
+    margin: 0 0 24px;
+    line-height: 1.6;
+  }
+
+  .subscription-section-{{ section.id }}
+  .subscription-card__button {
+    display: inline-block;
+    padding: 12px 32px;
+    background: #33D177;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background 0.3s ease;
+  }
+
+  .subscription-section-{{ section.id }}.subscription-card__button:hover {
+    background: #2ab866;
+  }
+
+  @media screen and (max-width: 989px) {
+    .subscription-section-{{ section.id }} .subscription-cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .subscription-section-{{ section.id }} .subscription-cards {
+      grid-template-columns: 1fr;
+    }
+  }
+{%- endstyle -%}
+
+<section class="subscription-section subscription-section-{{ section.id }}">
+  <div class="page-width">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="section-heading" style="text-align: center; margin-bottom: 48px;">
+        {{ section.settings.heading }}
+      </h2>
+    {%- endif -%}
+
+    <div class="subscription-cards">
+      {%- for block in section.blocks -%}
+        <div class="subscription-card" {{ block.shopify_attributes }}>
+          {%- if block.settings.title != blank -%}
+            <h3 class="subscription-card__title">{{ block.settings.title }}</h3>
+          {%- endif -%}
+
+          {%- if block.settings.price != blank -%}
+            <div class="subscription-card__price">{{ block.settings.price }}</div>
+          {%- endif -%}
+
+          {%- if block.settings.period != blank -%}
+            <div class="subscription-card__period">{{ block.settings.period }}</div>
+          {%- endif -%}
+
+          {%- if block.settings.description != blank -%}
+            <div class="subscription-card__description">{{ block.settings.description }}</div>
+          {%- endif -%}
+
+          {%- if block.settings.button_label != blank -%}
+            <a href="{{ block.settings.button_link }}" class="subscription-card__button">
+              {{ block.settings.button_label }}
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Subscription Plans",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Choose Your Plan"
+      }, {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background Color",
+        "default": "#f9f9f9"
+      }, {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Padding Top",
+        "default": 60
+      }, {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Padding Bottom",
+        "default": 60
+      }
+    ],
+    "blocks": [
+      {
+        "type": "subscription_card",
+        "name": "Subscription Card",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Plan Name",
+            "default": "Free"
+          },
+          {
+            "type": "text",
+            "id": "price",
+            "label": "Price",
+            "default": "$0"
+          },
+          {
+            "type": "text",
+            "id": "period",
+            "label": "Period",
+            "default": "per month"
+          },
+          {
+            "type": "textarea",
+            "id": "description",
+            "label": "Description",
+            "default": "Perfect for getting started"
+          }, {
+            "type": "text",
+            "id": "button_label",
+            "label": "Button Label",
+            "default": "Get Started"
+          }, {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button Link"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Subscription Plans",
+        "blocks": [
+          {
+            "type": "subscription_card",
+            "settings": {
+              "title": "Free",
+              "price": "$0",
+              "period": "per month",
+              "description": "Perfect for getting started with basic features",
+              "button_label": "Get Started"
+            }
+          }, {
+            "type": "subscription_card",
+            "settings": {
+              "title": "Basic",
+              "price": "$5",
+              "period": "per month",
+              "description": "Great for individuals and small teams",
+              "button_label": "Subscribe"
+            }
+          }, {
+            "type": "subscription_card",
+            "settings": {
+              "title": "Pro",
+              "price": "$8",
+              "period": "per month",
+              "description": "Best for professionals and growing businesses",
+              "button_label": "Subscribe"
+            }
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
