@@ -48,8 +48,7 @@
               (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)
             {%- endcapture -%}
               {%- endif -%}
-              {{
-                section.settings.image | image_url: width: 1500 | image_tag: sizes: sizes, widths: widths, fetchpriority: fetch_priority
+              {{ section.settings.image | image_url: width: 1500 | image_tag: sizes: sizes, widths: widths, fetchpriority: fetch_priority
               }}
             {%- else -%}
               {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
@@ -100,6 +99,7 @@
 </div>
 
 <style>
+
   .image-with-text__heading {
     color: #fff;
     font-family: poppins
@@ -112,7 +112,6 @@
 
   .image-with-text-feature {
     padding: 0 80px 0 30px;
-    border: 1px solid red;
   }
   .image-with-text__text {
     font-family: 'SF Pro Text'
@@ -162,14 +161,29 @@
   }
 
   @media screen and (max-width: 749px) {
+    .image-with-text__content .image-with-text-cta-button {
+      margin-bottom: 25px;
+    }
+
     .image-with-text__grid {
       display: flex;
       flex-direction: column;
       grid-template-columns: unset;
+      padding: 0 30px;
+    }
+
+    .image-with-text__text-item {
+      margin: 0 !important;
     }
 
     .image-with-text__grid--reverse {
       flex-direction: column-reverse;
+    }
+
+    .background-gradient {
+      border-radius: 40px;
+      padding: 40px 0 0;
+      overflow: hidden;
     }
 
     .image-with-text__text-item,
@@ -184,7 +198,7 @@
     }
 
     .image-with-text-feature {
-      padding-top: 0;
+      padding: 0 !important;
     }
 
     .image-with-text__heading,
@@ -198,14 +212,15 @@
     }
 
     .image-with-text__media-item {
+      margin: 0 !important;
       overflow: hidden;
-      max-height: 250px;
+      max-height: 275px;
     }
 
     .image-with-text__media {
       overflow: hidden;
-      height: 250px;
-      max-height: 250px;
+      height: 275px;
+      max-height: 275px;
       padding-bottom: 0;
     }
 
@@ -215,6 +230,7 @@
       min-height: 500px;
       object-fit: cover;
       object-position: top center;
+      border-radius: 8px;
     }
   }
 

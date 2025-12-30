@@ -91,7 +91,6 @@
   .gradient-hero__box {
     width: 100%;
     display: grid;
-    gap: 8px;
   }
 
 
@@ -100,7 +99,7 @@
     margin: 0;
     color: white;
     font-weight: 600;
-    font-size: 32px;
+    font-size: 44px;
     font-family: 'inter'
     , sans-serif;
   }
@@ -108,7 +107,7 @@
   .gradient-hero-{{ section.id }}
   .gradient-hero__subtitle {
     margin: 0;
-    font-size: 38px;
+    font-size: 44px;
     font-family: 'barlow'
     , sans-serif;
     font-weight: 300;
@@ -119,7 +118,7 @@
   .gradient-hero__mini {
     margin: 0;
     text-transform: uppercase;
-    font-size: 18px;
+    font-size: 30px;
   }
 
   .gradient-hero-{{ section.id }}
@@ -129,12 +128,16 @@
     gap: 12px;
   }
 
+  .gradient-hero__button-wrapper--mobile {
+    display: none !important;
+  }
+
   .button-feature {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 12px;
-    padding: 15px 23px;
+    padding: 18px 60px !important;
     background: #fff;
     text-decoration: none;
     color: #33D177;
@@ -162,8 +165,8 @@
 
   @media screen and (max-width: 749px) {
     .gradient-hero-{{ section.id }} .gradient-hero__card {
+      display: flex;
       flex-direction: column;
-      gap: 30px;
     }
 
     /* Hide first image column on mobile */
@@ -171,31 +174,87 @@
       display: none !important;
     }
 
-    /* Content and second image take full width */
-    .gradient-hero-{{ section.id }} .gradient-hero__image-column
-    , .gradient-hero-{{ section.id }}
-    .gradient-hero__content {
+    .gradient-hero__button-wrapper--mobile {
+      display: flex !important;
+      margin-top: -34px;
+    }
+
+    /* Hide button on mobile */
+    .gradient-hero__button-wrapper--desktop {
+      display: none !important;
+    }
+
+    /* Flatten content wrapper so button can be reordered */
+    .gradient-hero-{{ section.id }} .gradient-hero__content {
+      display: contents;
+    }
+
+    /* Content box takes full width and comes first */
+    .gradient-hero-{{ section.id }} .gradient-hero__box {
+      order: 1;
       flex: 1 1 100%;
+      width: 100%;
     }
 
-    .gradient-hero-{{ section.id }}.gradient-hero__image-column:last-child {
-      order: -1;
+    /* Second image column shows after content */
+    .gradient-hero__image-column-two {
+      order: 2;
+      flex: 1 1 100%;
+      width: 100% !important;
+      height: 100px !important;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      overflow: hidden;
     }
 
-    /* Fix image positioning on mobile */
-    .gradient-hero-{{ section.id }} .gradient-hero__image-column {
-      min-height: 200px;
-      flex-direction: column;
-      gap: 20px;
+    /* Images positioned absolutely, 60% width each */
+    .gradient-hero__image-column-two .gradient-hero__image {
+      position: absolute;
+      width: 40%;
+      height: auto;
+      max-width: 40%;
+      object-fit: contain;
+    }
 
+    /* Image 1 - top left, lower z-index */
+    .gradient-hero__image-column-two .gradient-hero__image--bottom-left {
+      top: 0;
+      left: 15%;
+      z-index: 2;
+    }
+
+    /* Image 2 - top right, higher z-index */
+    .gradient-hero__image-column-two .gradient-hero__image--bottom-right {
+      top: 0;
+      right: 15%;
+      z-index: 1;
     }
 
     .gradient-hero-{{ section.id }}
-    .gradient-hero__image {
-      position: absolute;
-      max-width: 80%;
+    .gradient-hero__heading {
+      font-size: 30px;
     }
 
+    .gradient-hero-{{ section.id }}
+    .gradient-hero__subtitle {
+      font-size: 22px;
+    }
+
+    .gradient-hero-{{ section.id }}
+    .gradient-hero__mini {
+      font-size: 18px;
+    }
+
+    /* Button comes last */
+    .gradient-hero-{{ section.id }} .gradient-hero__button-wrapper {
+      order: 3;
+      flex: 1 1 100%;
+      width: 100%;
+      justify-content: center;
+    }
   }
 
 
@@ -236,7 +295,7 @@
           {%- endif -%}
 
           {%- if section.settings.button_label != blank -%}
-            <div class="gradient-hero__button-wrapper">
+            <div class="gradient-hero__button-wrapper gradient-hero__button-wrapper--desktop">
               <a href="{{ section.settings.button_link }}" class="button-feature">
 
                 {{ section.settings.button_label | escape }}
@@ -251,7 +310,7 @@
         </div>
       </div>
 
-      <div class="gradient-hero__image-column">
+      <div class="gradient-hero__image-column gradient-hero__image-column-two">
         <img
           src="{{ '9.1.png' | asset_url }}"
           alt="Decorative image"
@@ -267,6 +326,20 @@
           width="100"
           height="100" />
       </div>
+
+      {%- if section.settings.button_label != blank -%}
+        <div class="gradient-hero__button-wrapper gradient-hero__button-wrapper--mobile">
+          <a href="{{ section.settings.button_link }}" class="button-feature">
+
+            {{ section.settings.button_label | escape }}
+            <img
+              src="{{ 'arrow.png' |  asset_url }}"
+              alt="arrow icon"
+              width="16"
+              height="16" />
+          </a>
+        </div>
+      {%- endif -%}
     </div>
   </div>
 </section>
