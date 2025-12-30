@@ -1,4 +1,10 @@
 {%- style -%}
+  * {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
+  }
   .subscription-section-{{ section.id }} {
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
@@ -14,6 +20,30 @@
     margin: 0 auto;
   }
 
+  .section-heading-primary {
+    font-size: 48px;
+    font-family: 'inter'
+    , sans-serif;
+    font-weight: 700;
+    color: #111827;
+  }
+
+  .section-heading-primary span {
+    background-image: linear-gradient(to right, #9DE053 0%, #01CB6B 100%);
+    color: white;
+    display: inline-flex;
+    padding: 22px 28px !important;
+    align-items: center;
+    justify-content: center;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 40px;
+    border-bottom-left-radius: 10px;
+    line-height: 18px;
+    letter-spacing: 0;
+    vertical-align: middle;
+  }
+
   .subscription-section-{{ section.id }}
   .subscription-card {
     background: white;
@@ -27,7 +57,6 @@
   .subscription-card__title {
     font-size: 24px;
     font-weight: 600;
-    margin: 0 0 16px;
     color: #333;
   }
 
@@ -47,11 +76,40 @@
   }
 
   .subscription-section-{{ section.id }}
+  .subscription-card__subtitle {
+    font-size: 16px;
+    color: #555;
+    font-weight: 500;
+  }
+
+  .subscription-section-{{ section.id }}
   .subscription-card__description {
     font-size: 14px;
     color: #666;
-    margin: 0 0 24px;
     line-height: 1.6;
+  }
+
+  .subscription-section-{{ section.id }}
+  .subscription-card__features {
+    padding: 0;
+    list-style: none;
+  }
+
+  .subscription-section-{{ section.id }}
+  .subscription-card__feature {
+    font-size: 14px;
+    color: #333;
+    padding-left: 24px;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .subscription-section-{{ section.id }}.subscription-card__feature:before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #33D177;
+    font-weight: 700;
   }
 
   .subscription-section-{{ section.id }}
@@ -86,7 +144,7 @@
 <section class="subscription-section subscription-section-{{ section.id }}">
   <div class="page-width">
     {%- if section.settings.heading != blank -%}
-      <h2 class="section-heading" style="text-align: left; margin-bottom: 48px;">
+      <h2 class="section-heading-primary" style="text-align: center; margin-bottom: 48px;">
         <p>
           Basic
           <span>Subscriptions</span>
@@ -101,22 +159,28 @@
             <h3 class="subscription-card__title">{{ block.settings.title }}</h3>
           {%- endif -%}
 
+          {%- if block.settings.subtitle != blank -%}
+            <p class="subscription-card__subtitle">{{ block.settings.subtitle }}</p>
+          {%- endif -%}
+
           {%- if block.settings.price != blank -%}
             <div class="subscription-card__price">{{ block.settings.price }}</div>
           {%- endif -%}
 
-          {%- if block.settings.period != blank -%}
-            <div class="subscription-card__period">{{ block.settings.period }}</div>
-          {%- endif -%}
-
           {%- if block.settings.description != blank -%}
-            <div class="subscription-card__description">{{ block.settings.description }}</div>
+            <p class="subscription-card__description">{{ block.settings.description }}</p>
           {%- endif -%}
 
-          {%- if block.settings.button_label != blank -%}
-            <a href="{{ block.settings.button_link }}" class="subscription-card__button">
-              {{ block.settings.button_label }}
-            </a>
+          {%- if block.settings.features != blank -%}
+            {%- assign feature_lines = block.settings.features | split: '\n' -%}
+            <ul class="subscription-card__features">
+              {%- for feature_line in feature_lines -%}
+                {%- assign trimmed = feature_line | strip -%}
+                {%- if trimmed != '' -%}
+                  <li class="subscription-card__feature">{{ trimmed }}</li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
           {%- endif -%}
         </div>
       {%- endfor -%}
@@ -171,6 +235,12 @@
           },
           {
             "type": "text",
+            "id": "subtitle",
+            "label": "Subtitle",
+            "default": "hello there"
+          },
+          {
+            "type": "text",
             "id": "price",
             "label": "Price",
             "default": "$0"
@@ -180,12 +250,16 @@
             "id": "period",
             "label": "Period",
             "default": "per month"
-          },
-          {
+          }, {
             "type": "textarea",
             "id": "description",
             "label": "Description",
             "default": "Perfect for getting started"
+          }, {
+            "type": "textarea",
+            "id": "features",
+            "label": "Description list (one per line)",
+            "default": "Item one\nItem two\nItem three"
           }, {
             "type": "text",
             "id": "button_label",
@@ -207,27 +281,33 @@
             "type": "subscription_card",
             "settings": {
               "title": "Free",
+              "subtitle": "Best for starters",
               "price": "$0",
               "period": "per month",
               "description": "Perfect for getting started with basic features",
+              "features": "1 user\nBasic analytics\nEmail support",
               "button_label": "Get Started"
             }
           }, {
             "type": "subscription_card",
             "settings": {
               "title": "Basic",
+              "subtitle": "For small teams",
               "price": "$5",
               "period": "per month",
               "description": "Great for individuals and small teams",
+              "features": "Up to 5 users\nStandard analytics\nPriority email support",
               "button_label": "Subscribe"
             }
           }, {
             "type": "subscription_card",
             "settings": {
               "title": "Pro",
+              "subtitle": "For growing businesses",
               "price": "$8",
               "period": "per month",
               "description": "Best for professionals and growing businesses",
+              "features": "Unlimited users\nAdvanced analytics\nPriority support",
               "button_label": "Subscribe"
             }
           }
