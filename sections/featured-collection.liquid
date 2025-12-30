@@ -199,7 +199,7 @@
           href="{{ section.settings.collection.url }}"
           class="{% if section.settings.view_all_style == 'link' %}link underlined-link{% elsif section.settings.view_all_style == 'solid' %}button{% else %}button button--secondary{% endif %}"
           aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: section.settings.collection.title | escape }}">
-          {{ 'sections.featured_collection.view_all' | t }}
+          Show more
         </a>
       </div>
     {%- endif -%}
@@ -211,58 +211,75 @@
 
 <style>
   .collection__title-feature {
-    padding: 0;
     text-align: center;
     color: #313131;
-    margin-bottom: 30px;
-    font-size: 46px !important;
-    font-weight: 600 !important;
     font-family: 'Barlow'
     , sans-serif;
   }
   .title-feature {
+    padding: 0;
     font-size: 46px;
     font-weight: 600;
     font-family: 'Barlow'
     , sans-serif;
+    line-height: 30px;
+    margin-bottom: 30px !important;
   }
   .subtitle {
     font-size: 30px;
-    font-weight: lighter !important;
-    margin-top: -10px;
-    margin-bottom: 8px;
+    font-weight: 300;
+    line-height: 50px;
     color: #313131;
-    padding: 0;
+    padding: 0 !important;
+    margin: 0 !important;
     font-family: 'Barlow'
     , sans-serif;
   }
   .subtitle-mini {
-    font-size: 16px;
-    margin-top: 0;
-    margin-bottom: 16px;
+    padding: 0 !important;
+    font-size: 24px;
+    font-weight: 300;
+    margin: 0 0 16px !important;
     color: #313131;
     font-family: 'Barlow'
     , sans-serif;
-    opacity: 0.7;
-    font-weight: normal;
+    opacity: 0.3 !important;
+  }
+
+  .product-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 16px !important;
+    flex-wrap: initial !important;
+  }
+
+  /* Reset grid__item width for grid layout */
+  .product-grid .grid__item {
+    width: auto !important;
+    max-width: none !important;
+    flex-grow: initial !important;
   }
 
   @media screen and (max-width: 749px) {
+    .product-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
     .collection__title-feature,
     .title-feature {
-      font-size: 30px !important;
-      margin-bottom: 20px;
+      font-size: 30px;
+      line-height: 30px;
+      margin-bottom: 8px !important;
     }
 
     .subtitle {
       font-size: 20px;
-      margin-top: -5px;
+      margin: 0 !important;
     }
 
     .subtitle-mini {
-      font-size: 14px !important;
-      margin-bottom: 12px !important;
-      opacity: 0.7 !important;
+      font-size: 20px;
+      margin: -10px 0 36px !important;
+      opacity: 0.3 !important;
     }
   }
 
@@ -288,7 +305,7 @@
         "min": 2,
         "max": 75,
         "step": 1,
-        "default": 74,
+        "default": 30,
         "label": "t:sections.featured-collection.settings.products_to_show.label"
       },
       {

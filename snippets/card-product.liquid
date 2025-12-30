@@ -125,14 +125,8 @@
             </h3>
           </div>
           <div class="card__badge {{ settings.badge_position }}">
-            {%- if card_product.available == false -%}
-              <span
-                id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
-                class="badge badge--bottom-left color-{{ settings.sold_out_badge_color_scheme }}"
-              >
-                {{- 'products.product.sold_out' | t -}}
-              </span>
-            {%- elsif card_product.compare_at_price > card_product.price and card_product.available -%}
+            {%- comment -%}Sold-out badge hidden{%- endcomment -%}
+            {%- if card_product.compare_at_price > card_product.price and card_product.available -%}
               <span
                 id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
                 class="badge badge--bottom-left color-{{ settings.sale_badge_color_scheme }}"
@@ -549,14 +543,8 @@
           {% endif %}
         {% endif %}
         <div class="card__badge {{ settings.badge_position }}">
-          {%- if card_product.available == false -%}
-            <span
-              id="Badge-{{ section_id }}-{{ card_product.id }}"
-              class="badge badge--bottom-left color-{{ settings.sold_out_badge_color_scheme }}"
-            >
-              {{- 'products.product.sold_out' | t -}}
-            </span>
-          {%- elsif card_product.compare_at_price > card_product.price and card_product.available -%}
+          {%- comment -%}Sold-out badge hidden{%- endcomment -%}
+          {%- if card_product.compare_at_price > card_product.price and card_product.available -%}
             <span
               id="Badge-{{ section_id }}-{{ card_product.id }}"
               class="badge badge--bottom-left color-{{ settings.sale_badge_color_scheme }}"
@@ -629,7 +617,6 @@
     padding-left: 2rem;
     color: white;
     font-size: 18px;
-    font-family: 'SF Pro Text', sans-serif;
   }
   .card__information {
     background-image: linear-gradient(to bottom, #A0E052, #01CB6B);

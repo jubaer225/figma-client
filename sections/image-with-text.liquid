@@ -107,10 +107,12 @@
     font-size: 46px;
     font-weight: 400;
     padding: 0;
+    line-height: 57px;
   }
 
   .image-with-text-feature {
-    padding: 0 30px;
+    padding: 0 80px 0 30px;
+    border: 1px solid red;
   }
   .image-with-text__text {
     font-family: 'SF Pro Text'
@@ -494,12 +496,12 @@
         "limit": 1,
         "settings": [
           {
-            "type": "richtext",
+            "type": "textarea",
             "id": "text",
             "default": "t:sections.image-with-text.blocks.text.settings.text.default",
             "label": "t:sections.image-with-text.blocks.text.settings.text.label"
           }, {
-            "type": "richtext",
+            "type": "textarea",
             "id": "text_2",
             "label": "Text 2",
             "default": "<p>Add second text here</p>"
