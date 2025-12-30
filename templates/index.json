@@ -155,6 +155,56 @@
         "padding_top": 40,
         "padding_bottom": 40
       }
+    },
+    "subscription_task_w7WaAd": {
+      "type": "subscription-task",
+      "blocks": {
+        "subscription_card_Nem6yF": {
+          "type": "subscription_card",
+          "settings": {
+            "title": "Free",
+            "price": "$0",
+            "period": "per month",
+            "description": "Perfect for getting started with basic features",
+            "button_label": "Get Started",
+            "button_link": ""
+          }
+        },
+        "subscription_card_KeVpMg": {
+          "type": "subscription_card",
+          "settings": {
+            "title": "Basic",
+            "price": "$5",
+            "period": "per month",
+            "description": "Great for individuals and small teams",
+            "button_label": "Subscribe",
+            "button_link": ""
+          }
+        },
+        "subscription_card_wxtYRQ": {
+          "type": "subscription_card",
+          "settings": {
+            "title": "Pro",
+            "price": "$8",
+            "period": "per month",
+            "description": "Best for professionals and growing businesses",
+            "button_label": "Subscribe",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "subscription_card_Nem6yF",
+        "subscription_card_KeVpMg",
+        "subscription_card_wxtYRQ"
+      ],
+      "name": "Subscription Plans",
+      "settings": {
+        "heading": "Choose Your Plan",
+        "background_color": "#f9f9f9",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
     }
   },
   "order": [
@@ -162,6 +212,7 @@
     "featured_collection",
     "image_with_text_drEUWg",
     "background_image_text_3yYiwE",
-    "background_two_image_4Xznw4"
+    "background_two_image_4Xznw4",
+    "subscription_task_w7WaAd"
   ]
 }
