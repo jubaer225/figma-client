@@ -199,6 +199,21 @@
         "padding_top": 60,
         "padding_bottom": 60
       }
+    },
+    "uplody_support_VhYq3m": {
+      "type": "uplody-support",
+      "name": "Support",
+      "settings": {
+        "section_title": "Uploady Support",
+        "section_subtitle": "We are here to help you get the most out of Uploady.",
+        "section_main": "Guides, best practices, and expert support tailored to your workflow.",
+        "cta_label": "Contact Support",
+        "cta_link": "",
+        "section_note": "Response time: under 24 hours.",
+        "background_color": "#f7f7f7",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
     }
   },
   "order": [
@@ -207,6 +222,7 @@
     "image_with_text_drEUWg",
     "background_image_text_3yYiwE",
     "background_two_image_4Xznw4",
-    "subscription_task_w7WaAd"
+    "subscription_task_w7WaAd",
+    "uplody_support_VhYq3m"
   ]
 }
