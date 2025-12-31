@@ -153,58 +153,41 @@
     {%- endif -%}
 
     <div class="subscription-cards">
-      {%- assign open_card = false -%}
-      {%- assign open_features = false -%}
-
       {%- for block in section.blocks -%}
-        {%- case block.type -%}
-          {%- when 'subscription_card' -%}
-            {%- if open_features -%}
-              </ul>
-              {%- assign open_features = false -%}
-            {%- endif -%}
+        <div class="subscription-card" {{ block.shopify_attributes }}>
+          {%- if block.settings.title != blank -%}
+            <h3 class="subscription-card__title">{{ block.settings.title }}</h3>
+          {%- endif -%}
 
-            {%- if open_card -%}
-              </div>
-            {%- endif -%}
+          {%- if block.settings.subtitle != blank -%}
+            <p class="subscription-card__subtitle">{{ block.settings.subtitle }}</p>
+          {%- endif -%}
 
-            <div class="subscription-card" {{ block.shopify_attributes }}>
-              {%- if block.settings.title != blank -%}
-                <h3 class="subscription-card__title">{{ block.settings.title }}</h3>
-              {%- endif -%}
+          {%- if block.settings.price != blank -%}
+            <div class="subscription-card__price">{{ block.settings.price }}</div>
+          {%- endif -%}
 
-              {%- if block.settings.subtitle != blank -%}
-                <p class="subscription-card__subtitle">{{ block.settings.subtitle }}</p>
-              {%- endif -%}
+          {%- if block.settings.description != blank -%}
+            <p class="subscription-card__description">{{ block.settings.description }}</p>
+          {%- endif -%}
 
-              {%- if block.settings.price != blank -%}
-                <div class="subscription-card__price">{{ block.settings.price }}</div>
-              {%- endif -%}
-
-              {%- if block.settings.description != blank -%}
-                <p class="subscription-card__description">{{ block.settings.description }}</p>
-              {%- endif -%}
-
-              {%- assign open_card = true -%}
-
-          {%- when 'feature' -%}
-            {%- if open_card -%}
-              {%- unless open_features -%}
-                <ul class="subscription-card__features">
-                {%- assign open_features = true -%}
-              {%- endunless -%}
-              <li class="subscription-card__feature" {{ block.shopify_attributes }}>{{ block.settings.feature_text }}</li>
-            {%- endif -%}
-        {%- endcase -%}
-      {%- endfor -%}
-
-      {%- if open_features -%}
-        </ul>
-      {%- endif -%}
-
-      {%- if open_card -%}
+          {%- if block.settings.features != blank -%}
+            {%- assign feature_lines = block.settings.features
+              | replace: '<br />', '\n'
+              | replace: '<br/>', '\n'
+              | replace: '<br>', '\n'
+              | split: '\n' -%}
+            <ul class="subscription-card__features">
+              {%- for feature_line in feature_lines -%}
+                {%- assign trimmed = feature_line | strip -%}
+                {%- if trimmed != '' -%}
+                  <li class="subscription-card__feature">{{ trimmed }}</li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
+          {%- endif -%}
         </div>
-      {%- endif -%}
+      {%- endfor -%}
     </div>
   </div>
 </section>
@@ -218,14 +201,12 @@
         "id": "heading",
         "label": "Heading",
         "default": "Choose Your Plan"
-      },
-      {
+      }, {
         "type": "color",
         "id": "background_color",
         "label": "Background Color",
         "default": "#f9f9f9"
-      },
-      {
+      }, {
         "type": "range",
         "id": "padding_top",
         "min": 0,
@@ -234,8 +215,7 @@
         "unit": "px",
         "label": "Padding Top",
         "default": 60
-      },
-      {
+      }, {
         "type": "range",
         "id": "padding_bottom",
         "min": 0,
@@ -274,18 +254,11 @@
             "id": "description",
             "label": "Description",
             "default": "Perfect for getting started"
-          }
-        ]
-      },
-      {
-        "type": "feature",
-        "name": "Feature",
-        "settings": [
-          {
-            "type": "text",
-            "id": "feature_text",
-            "label": "Feature text",
-            "default": "Item one"
+          }, {
+            "type": "textarea",
+            "id": "features",
+            "label": "Description list (one per line)",
+            "default": "Item one\nItem two\nItem three"
           }
         ]
       }
@@ -300,79 +273,26 @@
               "title": "Free",
               "subtitle": "Best for starters",
               "price": "$0",
-              "description": "Perfect for getting started with basic features"
+              "description": "Perfect for getting started with basic features",
+              "features": "1 user\nBasic analytics\nEmail support"
             }
-          },
-          {
-            "type": "feature",
-            "settings": {
-              "feature_text": "1 user"
-            }
-          },
-          {
-            "type": "feature",
-            "settings": {
-              "feature_text": "Basic analytics"
-            }
-          },
-          {
-            "type": "feature",
-            "settings": {
-              "feature_text": "Email support"
-            }
-          },
-          {
+          }, {
             "type": "subscription_card",
             "settings": {
               "title": "Basic",
               "subtitle": "For small teams",
               "price": "$5",
-              "description": "Great for individuals and small teams"
+              "description": "Great for individuals and small teams",
+              "features": "Up to 5 users\nStandard analytics\nPriority email support"
             }
-          },
-          {
-            "type": "feature",
-            "settings": {
-              "feature_text": "Up to 5 users"
-            }
-          },
-          {
-            "type": "feature",
-            "settings": {
-              "feature_text": "Standard analytics"
-            }
-          },
-          {
-            "type": "feature",
-            "settings": {
-              "feature_text": "Priority email support"
-            }
-          },
-          {
+          }, {
             "type": "subscription_card",
             "settings": {
               "title": "Pro",
               "subtitle": "For growing businesses",
               "price": "$8",
-              "description": "Best for professionals and growing businesses"
-            }
-          },
-          {
-            "type": "feature",
-            "settings": {
-              "feature_text": "Unlimited users"
-            }
-          },
-          {
-            "type": "feature",
-            "settings": {
-              "feature_text": "Advanced analytics"
-            }
-          },
-          {
-            "type": "feature",
-            "settings": {
-              "feature_text": "Priority support"
+              "description": "Best for professionals and growing businesses",
+              "features": "Unlimited users\nAdvanced analytics\nPriority support"
             }
           }
         ]
