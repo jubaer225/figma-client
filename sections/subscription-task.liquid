@@ -11,11 +11,27 @@
     background: #FFF;
   }
 
+  .another-wraper {
+    padding: 0 5rem;
+  }
+
+  .subscription-text {
+    font-size: 13px;
+    color: #878787;
+    font-family: 'inter'
+    , sans-serif;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 24px;
+  }
+
   .subscription-section-{{ section.id }}
-  .subscription-cards {
+  .subscription-cards
+  , .subscription-section-{{ section.id }}
+  .subscription-second-cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    gap: 16px;
     max-width: 1200px;
     margin: 0 auto;
   }
@@ -45,12 +61,40 @@
   }
 
   .subscription-section-{{ section.id }}
-  .subscription-card {
+  .subscription-card
+  , .subscription-section-{{ section.id }}
+  .subscription-second-cards .subscription-second-card {
     background: white;
     border-radius: 12px;
-    padding: 32px 24px;
+    padding: 32px 24px 10px;
     text-align: left;
     border: 1px solid rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+
+  .subscription-card:nth-child(2) {
+    border: 2px solid rgba(0, 0, 0, 0.9);
+  }
+
+  .subscription-card:nth-child(2) .recomended {
+    display: block !important;
+  }
+
+  .recomended {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #1a1a1a;
+    color: white;
+    padding: 1px 4px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: 'inter'
+    , sans-serif;
+    display: none;
   }
 
   .subscription-section-{{ section.id }}
@@ -72,6 +116,7 @@
     border-radius: 8px;
     text-align: center;
     color: #303030;
+    margin: 16px 0;
   }
 
   .subscription-card__price span {
@@ -81,7 +126,7 @@
 
   .subscription-section-{{ section.id }}
   .subscription-card__subtitle {
-    font-size: 14px;
+    font-size: 13.8px;
     color: #616161;
     font-family: 'inter'
     , sans-serif;
@@ -95,7 +140,7 @@
   }
 
   .subscription-card__features li {
-    font-size: 14px;
+    font-size: 13.8px;
     color: #303030;
     position: relative;
     font-family: 'inter'
@@ -106,7 +151,7 @@
 
   .subscription-section-{{ section.id }}
   .subscription-card__feature {
-    font-size: 14px;
+    font-size: 13.8px;
     color: #303030;
     position: relative;
     font-family: 'inter'
@@ -138,53 +183,116 @@
     background: #2ab866;
   }
 
+  .subscription-section-{{ section.id }}
+  .subscription-second-card {
+    background-color: #5d5d5d !important;
+    color: white;
+    border-radius: 12px;
+    height: 285px;
+    overflow: hidden;
+    padding: 32px 24px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .subscription-section-{{ section.id }}
+  .subscription-second-card__title {
+    font-size: 20px;
+    font-weight: 700;
+    font-family: 'inter'
+    , sans-serif;
+    color: white;
+  }
+
+  .subscription-section-{{ section.id }}
+  .subscription-second-card__price {
+    font-size: 18px;
+    font-weight: 700;
+    font-family: 'inter'
+    , sans-serif;
+    background-color: white;
+    color: #303030;
+    border-radius: 8px;
+    text-align: center;
+    padding: 12px 0;
+    margin: 16px 0;
+  }
+
+  .subscription-second-card__price span {
+    font-size: 14px;
+    vertical-align: middle;
+  }
+
+  .imge-wrapper {
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+  }
+
+  .image-1,
+  .image-2 {
+    position: absolute;
+    top: 0;
+  }
+
+  .image-1 {
+    left: 20%;
+    z-index: 2;
+  }
+
+  .image-2 {
+    right: 20%;
+  }
+
+
   @media screen and (max-width: 989px) {
-    .subscription-section-{{ section.id }} .subscription-cards {
-      grid-template-columns: repeat(2, 1fr);
+    .subscription-section {
+      display: none;
     }
   }
 
   @media screen and (max-width: 749px) {
-    .subscription-section-{{ section.id }} .subscription-cards {
-      grid-template-columns: 1fr;
+    .subscription-section {
+      display: none;
     }
   }
 {%- endstyle -%}
 
 <section class="subscription-section subscription-section-{{ section.id }}">
   <div class="page-width">
-    {%- if section.settings.heading != blank -%}
-      <h2 class="section-heading-primary" style="text-align: center; margin-bottom: 48px;">
-        <p>
-          Basic
-          <span>Subscriptions</span>
-        </p>
-      </h2>
-    {%- endif -%}
+    <div class="another-wraper">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="section-heading-primary" style="text-align: center; margin-bottom: 48px;">
+          <p>
+            Basic
+            <span>Subscriptions</span>
+          </p>
+        </h2>
+      {%- endif -%}
 
-    <div class="subscription-cards">
-      {%- for block in section.blocks -%}
-        <div class="subscription-card" {{ block.shopify_attributes }}>
-          {%- if block.settings.title != blank -%}
-            <h3 class="subscription-card__title">{{ block.settings.title }}</h3>
-          {%- endif -%}
+      <div class="subscription-cards">
+        {%- for block in section.blocks -%}
+          <div class="subscription-card" {{ block.shopify_attributes }}>
+            <div class="recomended">Recommended</div>
+            {%- if block.settings.title != blank -%}
+              <h3 class="subscription-card__title">{{ block.settings.title }}</h3>
+            {%- endif -%}
 
-          {%- if block.settings.subtitle != blank -%}
-            <p class="subscription-card__subtitle">{{ block.settings.subtitle }}</p>
-          {%- endif -%}
+            {%- if block.settings.subtitle != blank -%}
+              <p class="subscription-card__subtitle">{{ block.settings.subtitle }}</p>
+            {%- endif -%}
 
-          {%- if block.settings.price != blank -%}
-            {% if block.settings.price == 'Free' %}
-              <div class="subscription-card__price">Free</div>
-            {% else %}
-              <div class="subscription-card__price">${{ block.settings.price }}
-                <span>/Month</span>
-              </div>
-            {% endif %}
-          {%- endif -%}
+            {%- if block.settings.price != blank -%}
+              {% if block.settings.price == "Free" %}
+                <div class="subscription-card__price">Free</div>
+              {% else %}
+                <div class="subscription-card__price">${{ block.settings.price }}
+                  <span>/Month</span>
+                </div>
+              {% endif %}
+            {%- endif -%}
 
-          {%- if block.settings.features != blank -%}
-            {%- assign raw_features = block.settings.features
+            {%- if block.settings.features != blank -%}
+              {%- assign raw_features = block.settings.features
  | replace: '\r\n', '\n'
  | replace: '\r', '\n'
  | replace: '<br />', '\n'
@@ -192,22 +300,86 @@
  | replace: '<br>', '\n'
  | replace: '</p>', '\n'
  | replace: '<p>', '' -%}
-            {%- assign feature_lines = raw_features | split: '\n' -%}
-            {%- assign has_features = false -%}
-            <ul class="subscription-card__features">
-              {%- for feature_line in feature_lines -%}
-                {%- assign trimmed = feature_line | strip -%}
-                {%- if trimmed != '' -%}
-                  <li class="subscription-card__feature">{{ trimmed }}</li>
-                  {%- assign has_features = true -%}
-                {%- endif -%}
-              {%- endfor -%}
-            </ul>
-            {%- unless has_features -%}
-              {%- assign has_features = nil -%}{%- endunless -%}
-          {%- endif -%}
+              {%- assign feature_lines = raw_features | split: '\n' -%}
+              {%- assign has_features = false -%}
+              <ul class="subscription-card__features">
+                {%- for feature_line in feature_lines -%}
+                  {%- assign trimmed = feature_line | strip -%}
+                  {%- if trimmed != '' -%}
+                    <li class="subscription-card__feature">{{ trimmed }}</li>
+                    {%- assign has_features = true -%}
+                  {%- endif -%}
+                {%- endfor -%}
+              </ul>
+              {%- unless has_features -%}
+                {%- assign has_features = nil -%}{%- endunless -%}
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+      <p class="subscription-text">*displayed offers only for new merchants – available for a limited time. (Not applicable for Shopify Plus)</p>
+
+
+      <div class="second-cards">
+        <h2 class="section-heading-primary" style="text-align: center; margin: 60px 0 48px;">
+          <p>
+            + Add-ons
+          </p>
+        </h2>
+      </div>
+
+      <div class="subscription-second-cards">
+
+        <div class="subscription-second-card">
+          <h3 class="subscription-second-card__title">Packing Slip Template</h3>
+          <p class="subscription-second-card__price">$3.99
+            <span>/Month</span>
+          </p>
+          <div class="imge-wrapper">
+            <img
+              src="{{ '5.png' |  asset_url }}"
+              alt="packing slip template"
+              width="250"
+              height="320">
+          </div>
         </div>
-      {%- endfor -%}
+
+        <div class="subscription-second-card">
+          <h3 class="subscription-second-card__title">Packing Slip Template</h3>
+          <p class="subscription-second-card__price">$3.99
+            <span>/Month</span>
+          </p>
+          <div class="imge-wrapper">
+            <img
+              class="image-1"
+              src="{{ '9.1.png' |  asset_url }}"
+              alt="packing slip template"
+              width="100"
+              height="100">
+            <img
+              class="image-2"
+              src="{{ '9.2.png' |  asset_url }}"
+              alt="packing slip template"
+              width="100"
+              height="100">
+          </div>
+        </div>
+
+        <div class="subscription-second-card">
+          <h3 class="subscription-second-card__title">Packing Slip Template</h3>
+          <p class="subscription-second-card__price">$3.99
+            <span>/Month</span>
+          </p>
+          <div class="imge-wrapper">
+            <img
+              src="{{ '10.2.png' |  asset_url }}"
+              alt="packing slip template"
+              width="250"
+              height="300">
+          </div>
+        </div>
+      </div>
+      <p class="subscription-text">*more add-ons  are available inside the app.</p>
     </div>
   </div>
 </section>
