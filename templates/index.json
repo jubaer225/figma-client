@@ -163,33 +163,30 @@
           "type": "subscription_card",
           "settings": {
             "title": "Free",
-            "price": "$0",
-            "period": "per month",
+            "subtitle": "Just for getting started.",
+            "price": "Free",
             "description": "Perfect for getting started with basic features",
-            "button_label": "Get Started",
-            "button_link": ""
+            "features": "Unlimited file uploads on storefront<br>\nFully customizable upload button<br>\n20 downloads (total)<br>\nMalware protection<br>\nTranslatable"
           }
         },
         "subscription_card_KeVpMg": {
           "type": "subscription_card",
           "settings": {
             "title": "Basic",
+            "subtitle": "hello there",
             "price": "$5",
-            "period": "per month",
             "description": "Great for individuals and small teams",
-            "button_label": "Subscribe",
-            "button_link": ""
+            "features": "Unlimited file uploads on storefront<br>\n500 downloads per month<br>\n60-Day file retention<br>\nMax. 100MB per file<br>\nAll file types supported"
           }
         },
         "subscription_card_wxtYRQ": {
           "type": "subscription_card",
           "settings": {
             "title": "Unlimited",
+            "subtitle": "hello there",
             "price": "$8",
-            "period": "per month",
             "description": "Best for professionals and growing businesses",
-            "button_label": "Subscribe",
-            "button_link": ""
+            "features": "Unlimited file uploads (fair usage)<br>\nUnlimited downloads per month<br>\n90-Day file retention<br>\nMax. 500MB per file<br>\nPriority Support"
           }
         }
       },
