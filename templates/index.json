@@ -173,7 +173,7 @@
           "type": "subscription_card",
           "settings": {
             "title": "Basic",
-            "subtitle": "hello there",
+            "subtitle": "The right choice for serious entrepreneurs.",
             "price": "$5",
             "description": "Great for individuals and small teams",
             "features": "Unlimited file uploads on storefront<br>\n500 downloads per month<br>\n60-Day file retention<br>\nMax. 100MB per file<br>\nAll file types supported"
@@ -183,7 +183,7 @@
           "type": "subscription_card",
           "settings": {
             "title": "Unlimited",
-            "subtitle": "hello there",
+            "subtitle": "Full performance with no limitations!",
             "price": "$8",
             "description": "Best for professionals and growing businesses",
             "features": "Unlimited file uploads (fair usage)<br>\nUnlimited downloads per month<br>\n90-Day file retention<br>\nMax. 500MB per file<br>\nPriority Support"
