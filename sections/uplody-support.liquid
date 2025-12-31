@@ -1,0 +1,153 @@
+{%- style -%}
+  .uplody-support-section {
+    padding: 60px 0;
+    background: #f7f7f7;
+  }
+
+  .uplody-support-section .section-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .uplody-support-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 12px;
+  }
+
+  .uplody-support-subtitle {
+    font-size: 18px;
+    color: #4b5563;
+    margin-bottom: 24px;
+  }
+
+  .uplody-support-main {
+    font-size: 16px;
+    color: #374151;
+    margin-bottom: 28px;
+  }
+
+  .uplody-support-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 24px;
+    background: #33d177;
+    color: #ffffff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.2s ease;
+  }
+
+  .uplody-support-cta:hover {
+    background: #2ab866;
+  }
+
+  .uplody-support-note {
+    display: block;
+    margin-top: 12px;
+    font-size: 14px;
+    color: #6b7280;
+  }
+{%- endstyle -%}
+
+<section class="uplody-support-section" style="background: {{ section.settings.background_color }}; padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;">
+  <div class="page-width">
+    <div class="section-inner">
+      {%- if section.settings.section_title != blank -%}
+        <h2 class="uplody-support-title">{{ section.settings.section_title }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.section_subtitle != blank -%}
+        <p class="uplody-support-subtitle">{{ section.settings.section_subtitle }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.section_main != blank -%}
+        <p class="uplody-support-main">{{ section.settings.section_main }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.cta_label != blank and section.settings.cta_link != blank -%}
+        <a class="uplody-support-cta" href="{{ section.settings.cta_link }}">{{ section.settings.cta_label }}</a>
+      {%- endif -%}
+
+      {%- if section.settings.section_note != blank -%}
+        <span class="uplody-support-note">{{ section.settings.section_note }}</span>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Uploady Support",
+    "settings": [
+      {
+        "type": "text",
+        "id": "section_title",
+        "label": "Section title",
+        "default": "Uploady Support"
+      },
+      {
+        "type": "textarea",
+        "id": "section_subtitle",
+        "label": "Section subtitle",
+        "default": "We are here to help you get the most out of Uploady."
+      },
+      {
+        "type": "textarea",
+        "id": "section_main",
+        "label": "Section main text",
+        "default": "Guides, best practices, and expert support tailored to your workflow."
+      },
+      {
+        "type": "text",
+        "id": "cta_label",
+        "label": "CTA label",
+        "default": "Contact Support"
+      }, {
+        "type": "url",
+        "id": "cta_link",
+        "label": "CTA link",
+        "default": "/pages/support"
+      }, {
+        "type": "text",
+        "id": "section_note",
+        "label": "Note / helper text",
+        "default": "Response time: under 24 hours."
+      }, {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background color",
+        "default": "#f7f7f7"
+      }, {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 120,
+        "step": 4,
+        "unit": "px",
+        "label": "Padding top",
+        "default": 60
+      }, {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 120,
+        "step": 4,
+        "unit": "px",
+        "label": "Padding bottom",
+        "default": 60
+      }
+    ],
+    "presets": [
+      {
+        "name": "Uploady Support",
+        "settings": {}
+      }
+    ]
+  }
+{% endschema %}
