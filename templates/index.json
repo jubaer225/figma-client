@@ -165,7 +165,6 @@
             "title": "Free",
             "subtitle": "Just for getting started.",
             "price": "Free",
-            "description": "Perfect for getting started with basic features",
             "features": "Unlimited file uploads on storefront<br>\nFully customizable upload button<br>\n20 downloads (total)<br>\nMalware protection<br>\nTranslatable"
           }
         },
@@ -174,8 +173,7 @@
           "settings": {
             "title": "Basic",
             "subtitle": "The right choice for serious entrepreneurs.",
-            "price": "$5",
-            "description": "Great for individuals and small teams",
+            "price": "5",
             "features": "Unlimited file uploads on storefront<br>\n500 downloads per month<br>\n60-Day file retention<br>\nMax. 100MB per file<br>\nAll file types supported"
           }
         },
@@ -184,8 +182,7 @@
           "settings": {
             "title": "Unlimited",
             "subtitle": "Full performance with no limitations!",
-            "price": "$8",
-            "description": "Best for professionals and growing businesses",
+            "price": "8",
             "features": "Unlimited file uploads (fair usage)<br>\nUnlimited downloads per month<br>\n90-Day file retention<br>\nMax. 500MB per file<br>\nPriority Support"
           }
         }
