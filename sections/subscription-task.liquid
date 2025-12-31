@@ -172,19 +172,26 @@
           {%- endif -%}
 
           {%- if block.settings.features != blank -%}
-            {%- assign feature_lines = block.settings.features
+            {%- assign raw_features = block.settings.features
+              | replace: '\r\n', '\n'
+              | replace: '\r', '\n'
               | replace: '<br />', '\n'
               | replace: '<br/>', '\n'
               | replace: '<br>', '\n'
-              | split: '\n' -%}
+              | replace: '</p>', '\n'
+              | replace: '<p>', '' -%}
+            {%- assign feature_lines = raw_features | split: '\n' -%}
+            {%- assign has_features = false -%}
             <ul class="subscription-card__features">
               {%- for feature_line in feature_lines -%}
                 {%- assign trimmed = feature_line | strip -%}
                 {%- if trimmed != '' -%}
                   <li class="subscription-card__feature">{{ trimmed }}</li>
+                  {%- assign has_features = true -%}
                 {%- endif -%}
               {%- endfor -%}
             </ul>
+            {%- unless has_features -%}{%- assign has_features = nil -%}{%- endunless -%}
           {%- endif -%}
         </div>
       {%- endfor -%}
